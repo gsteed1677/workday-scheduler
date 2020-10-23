@@ -17,18 +17,28 @@ document.getElementById("currentDay").innerHTML = date;
 //onClick event listener to the buttons
 $(".clickEvent").on("click", function(){
     var text = $(this).siblings(".textArea").val()
-console.log(text)
+    console.log(text)
     var time = $(this).parent().attr("id")
-    localStorage.setItem(text, time)
+    localStorage.setItem(time, text)
+    console.log(time)
 });
 
 
 //.each - kind of like a for loop - select a time box and loop over all of them to get that id and convert it into an interager - use the moment.hours and set it to the var to be the current time
+$("#9am textarea").val(localStorage.getItem("9am"))
+//same for the other 8 - using different time slots
 
+if ($("#9am").attr("data-hour")===moment().format("H")) {
+    $("#9am").attr("class", "present");
+} else if ($("#9am").attr("data-hour")< moment().format("H")) {
+    $("#9am").attr("class", "future");
+} else {
+    $("#9am").attr("class", "past");
+}
 
+// for loop for i = 9 and then sub in i for where ever 9 is -- for above function
 
-
-
+//if this "hour // example 9am" = the hour we can return from moment (return the number of that hour 3pm == 15) - just get the hour
 
 
 
