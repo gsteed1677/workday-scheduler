@@ -24,7 +24,7 @@ $(".clickEvent").on("click", function(){
 });
 
 
-//.each - kind of like a for loop - select a time box and loop over all of them to get that id and convert it into an interager - use the moment.hours and set it to the var to be the current time
+//local storage tying with getItem val()
 $("#9am textarea").val(localStorage.getItem("9am"))
 $("#10am textarea").val(localStorage.getItem("10am"))
 $("#11am textarea").val(localStorage.getItem("11am"))
@@ -37,22 +37,21 @@ $("#5pm textarea").val(localStorage.getItem("5pm"))
 //same for the other 8 - using different time slots
 
 
-for (i = 9; i < 18; i++) {
-var i = ".localTime"
-if ($(i).attr("data-hour")===moment().format("H")) {
-    $(i).attr("class", "present");
-} else if ($(i).attr("data-hour") < moment().format("H")) {
-    $(i).attr("class", "future");
-} else {
-    $(i).attr("class", "past");
-}
-}
 // for loop for i = 9 and then sub in i for where ever 9 is -- for above function
 
 //if this "hour // example 9am" = the hour we can return from moment (return the number of that hour 3pm == 15) - just get the hour
+for (i = 9; i < 18; i++) {
+    let el = ".localTime[data-hour=" + i + "]";
 
+    if ($(el).attr("data-hour") === moment().format("H")) {
+        $(el).attr("class", "present");
+    //class from above body to change color depending on the time of day - add a conditional
 
-
-//class from above body to change color depending on the time of day - add a conditional
+    } else if (parseInt($(el).attr("data-hour")) < moment().format("H")) {
+        $(el).attr("class", "past");
+    } else {
+        $(el).attr("class", "future");
+    }
+}
 
 });
